@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<script>
+// 舊頁面指向已刪除的打包檔時，清掉自己的快取重來一次；同網域的其他專案不能動
+addEventListener('error', function (e) {
+  var src = e.target && (e.target.src || e.target.href);
+  if (!src || src.indexOf('/assets/') < 0) return;
+  try { if (sessionStorage.getItem('book5-island-heal')) return; sessionStorage.setItem('book5-island-heal', '1'); } catch (err) { return; }
+  var scope = new URL('./', location.href).href;
+  var sw = 'serviceWorker' in navigator ? navigator.serviceWorker.getRegistrations() : Promise.resolve([]);
+  sw.then(function (regs) {
+    return Promise.all(regs.filter(function (r) { return r.scope === scope; }).map(function (r) { return r.unregister(); }));
+  }).then(function () {
+    return 'caches' in window ? caches.keys() : [];
+  }).then(function (keys) {
+    return Promise.all(keys.filter(function (k) { return k.indexOf('smes-island-') === 0 || k.indexOf('book5-island-') === 0; }).map(function (k) { return caches.delete(k); }));
+  }).finally(function () { location.reload(); });
+}, true);
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>國中英語第五冊 3D 浮空群島</title>
+<meta name="description" content="小羊兒老師領航，改編自阿凱老師天空之城 3D 浮空島架構。整合現在完成式、情緒分詞、被動語態、間接問句與關係代名詞 12 座互動浮空島、尋寶闖關與多階榮譽證書。" />
+<meta name="theme-color" content="#2f8fd8" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="國中英語第五冊 3D 浮空群島" />
+<meta property="og:description" content="完成式・被動式・情緒分詞・間接問句・關係代名詞｜十二座 3D 天空浮空島會考衝刺之旅" />
+<meta property="og:site_name" content="國中英語第五冊 3D 浮空群島" />
+<meta property="og:image" content="./og.jpg" />
+<meta property="og:locale" content="zh_TW" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="國中英語第五冊 3D 浮空群島" />
+<meta name="twitter:description" content="十二座 3D 天空浮空島帶你征服九上英語核心考點，挑戰文法與閱讀雙達人證書！" />
+<meta name="twitter:image" content="./og.jpg" />
+<link rel="icon" href="./icon-192.png" type="image/png" />
+<link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+<link rel="manifest" href="./manifest.webmanifest" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="./assets/index-DqCynwmD.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DPXzbUxr.css">
+</head>
+<body>
+<canvas id="world" aria-label="國中英語第五冊 3D 浮空群島場景，可拖曳旋轉、滾輪縮放，點選島嶼查看文法內容"></canvas>
+<div id="labels" class="labels" aria-hidden="false"></div>
+<div id="app"></div>
+
+<div id="loader" class="loader" role="status">
+  <div class="loader-card">
+    <img src="./brand/teacher-avatar.jpg" alt="島主小羊兒老師" width="132" height="132" style="border-radius:50%;object-fit:cover" />
+    <h1>國中英語第五冊 3D 浮空群島</h1>
+    <p class="loader-sub">完成式・被動式・情緒分詞・間接問句・關係代名詞</p>
+    <div class="loader-bar"><span id="loaderBar"></span></div>
+    <p id="loaderText" class="loader-text">展開雲海與文法群島…</p>
+    <button id="loaderSkip" class="loader-skip" hidden>改看文字清單</button>
+  </div>
+</div>
+
+<noscript><p style="padding:2rem;font-size:1.1rem">本網站需要啟用 JavaScript 才能瀏覽 3D 浮空群島，請開啟後重新整理。</p></noscript>
+</body>
+</html>

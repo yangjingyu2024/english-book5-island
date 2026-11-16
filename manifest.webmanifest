@@ -1,0 +1,17 @@
+{
+  "name": "國中英語第五冊 3D 浮空群島",
+  "short_name": "英語第五冊群島",
+  "description": "小羊兒老師領航，用 12 座 3D 天空浮空島複習國中英語第五冊核心文法與閱讀。",
+  "lang": "zh-Hant-TW",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#2f8fd8",
+  "theme_color": "#2f8fd8",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192-maskable.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
