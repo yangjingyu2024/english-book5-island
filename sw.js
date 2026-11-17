@@ -2,7 +2,7 @@
 const BUILD = "dev";
 const VERSION = "1.0.0";
 const NOTES = "國中英語第五冊 3D 浮空群島上線：12 座文法浮空島、守護小河馬尋寶與四階榮譽證書！";
-const ASSETS = ["./assets/index-C3gtG_E3.js","./assets/index-DPXzbUxr.css"];
+const ASSETS = ["./assets/index-CqFR8mN9.js","./assets/index-DPXzbUxr.css"];
 
 // 同網域下各專案獨立命名快取前綴，互不干擾
 const PREFIX = 'book5-island-';
